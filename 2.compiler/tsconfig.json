@@ -12,7 +12,14 @@
 
     /* Language and Environment */
     "target": "es2016",                                  /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */
-    // "lib": [],                                        /* Specify a set of bundled library declaration files that describe the target runtime environment. */
+            // : 어떤 자바스크립트 버전을 대상으로 코드를 컴파일할 것인지 타입스크립트에게 알려줌
+     "lib": [
+       "dom",
+       "es6",
+       "dom.iterable",
+       "scripthost"
+     ],                                        /* Specify a set of bundled library declaration files that describe the target runtime environment. */
+            // : dom 으로 작업을 수행하는 항목들, 즉 기본객체, 기능, TS 노드를 지정하게해주는 옵션
     // "jsx": "preserve",                                /* Specify what JSX code is generated. */
     // "experimentalDecorators": true,                   /* Enable experimental support for TC39 stage 2 draft decorators. */
     // "emitDecoratorMetadata": true,                    /* Emit design-type metadata for decorated declarations in source files. */
