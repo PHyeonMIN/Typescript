@@ -7,3 +7,9 @@ const printResult = (num:number) => {   // void : 이 함수에 의도적으로 
 }
 
 printResult(add(5,12));
+
+let combineValues: (a:number, b:number) => number;
+combineValues = add;
+// combineValues = 5;
+// combineValues = printResult();
+console.log(combineValues(8,8));
