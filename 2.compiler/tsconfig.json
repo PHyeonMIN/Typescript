@@ -94,14 +94,21 @@
 
     /* Type Checking */
     "strict": true,                                      /* Enable all strict type-checking options. */
+            // 모든 strict 유형의 검사 옵션을 사용, true : 밑의 설정들이 true, false : 밑에 설정들을 따로따로 설정가능
     // "noImplicitAny": true,                            /* Enable error reporting for expressions and declarations with an implied 'any' type. */
+            // 매개변수와 값을 명확히 함
     // "strictNullChecks": true,                         /* When type checking, take into account 'null' and 'undefined'. */
+            // null 값을 잠재적으로 가질 수 있는 값에 접근하고 작업하는 방식을 타입스크립트에게 매우 엄격하게 알려준다.
     // "strictFunctionTypes": true,                      /* When assigning functions, check to ensure parameters and the return values are subtype-compatible. */
+            // 많은 애플리케이션에서 볼 수 없는 틈새 박스를 잡는다.
     // "strictBindCallApply": true,                      /* Check that the arguments for 'bind', 'call', and 'apply' methods match the original function. */
+            // 기본적으로 호출하려는 함수가 bind, call, apply 중 무엇에 해당하는지 확인하고 함수를 제대로 설정했는지 확인
     // "strictPropertyInitialization": true,             /* Check for class properties that are declared but not set in the constructor. */
     // "noImplicitThis": true,                           /* Enable error reporting when 'this' is given the type 'any'. */
+            // this 키워드를 명확하지 않은 위치에서 사용되면 경고
     // "useUnknownInCatchVariables": true,               /* Default catch clause variables as 'unknown' instead of 'any'. */
     // "alwaysStrict": true,                             /* Ensure 'use strict' is always emitted. */
+
     // "noUnusedLocals": true,                           /* Enable error reporting when local variables aren't read. */
     // "noUnusedParameters": true,                       /* Raise an error when a function parameter isn't read. */
     // "exactOptionalPropertyTypes": true,               /* Interpret optional property types as written, rather than adding 'undefined'. */
