@@ -22,15 +22,46 @@ class Department {
     }
 }
 
-const accounting = new Department('d1','Accounting');
+class ITDepartment extends Department {
+    admins: string[];
 
-accounting.addEmployee('Max');
-accounting.addEmployee('Manu');
+    constructor(id: string, admins: string[]) {
+        super(id, 'IT');
+        this.admins = admins;
+    }
+}
+
+class AccountingDepartment extends Department {
+    constructor(id:string, private reports: string[]) {
+        super(id, 'Accounting');
+    }
+
+    addReport(text: string){
+        this.reports.push(text);
+    }
+
+    printReports() {
+        console.log(this.reports);
+    }
+}
+
+
+const it = new ITDepartment('d1',['Max']);
+
+it.addEmployee('Max');
+it.addEmployee('Manu');
 
 // accounting.employees[2] = 'Anna';
 
-accounting.describe();
-accounting.printEmployeeInformation();
+it.describe();
+it.name = 'NEW NAME';
+it.printEmployeeInformation();
+
+console.log(it);
+
+const accounting = new AccountingDepartment('d2',[]);
+accounting.addReport('Something went wrong...');
+accounting.printReports();
 
 // const accountingCopy = { name:'s', describe: accounting.describe }    // 클래스를 기반으로 하지않고 더미객체로서 생성
 // accountingCopy.describe();  // undefined
