@@ -1,4 +1,5 @@
 class Department {
+    static fiscalYear = 2020;
     // private readonly id: string;     // readonly : 특정 속성이 초기화되고나면 이후에는 변경 X
     // private name: string;
     protected employees: string[] = []; // protected : private와 다른 점은 이 클래스에서뿐만 아니라 이 클래스를 확장하는 모든 클래스에서 사용가능
@@ -6,6 +7,11 @@ class Department {
     constructor(private readonly id: string, public name: string) {
         // this.id = id;
         // this.name = n;
+        console.log(Department.fiscalYear);
+    }
+
+    static createEmployee(name: string){
+        return {name: name};
     }
 
     describe(this: Department) {
@@ -70,6 +76,8 @@ class AccountingDepartment extends Department {
     }
 }
 
+const employee1 = Department.createEmployee('Max');
+console.log(employee1, Department.fiscalYear);
 
 const it = new ITDepartment('d1',['Max']);
 
