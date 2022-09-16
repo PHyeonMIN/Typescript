@@ -1,10 +1,10 @@
-class Department {
+abstract class Department {
     static fiscalYear = 2020;
     // private readonly id: string;     // readonly : 특정 속성이 초기화되고나면 이후에는 변경 X
     // private name: string;
     protected employees: string[] = []; // protected : private와 다른 점은 이 클래스에서뿐만 아니라 이 클래스를 확장하는 모든 클래스에서 사용가능
 
-    constructor(private readonly id: string, public name: string) {
+    constructor(protected readonly id: string, public name: string) {
         // this.id = id;
         // this.name = n;
         console.log(Department.fiscalYear);
@@ -14,9 +14,7 @@ class Department {
         return {name: name};
     }
 
-    describe(this: Department) {
-        console.log(`Department (${this.id}): ${this.name}`);
-    }
+    abstract describe(this: Department) : void;
 
     addEmployee(employee: string){
         this.employees.push(employee);
@@ -34,6 +32,10 @@ class ITDepartment extends Department {
     constructor(id: string, admins: string[]) {
         super(id, 'IT');
         this.admins = admins;
+    }
+
+    describe(): void {
+        console.log('IT Department - ID: '+this.id);
     }
 }
 
@@ -57,6 +59,10 @@ class AccountingDepartment extends Department {
     constructor(id:string, private reports: string[]) {
         super(id, 'Accounting');
         this.lastReport = reports[0];
+    }
+
+    describe() {
+        console.log('Accounting Department - ID: '+ this.id);
     }
 
     addEmployee(name: string) {
@@ -98,8 +104,9 @@ accounting.addReport('Something went wrong...');
 console.log(accounting.mostRecentReport);           // getter
 accounting.addEmployee('Max');
 accounting.addEmployee('Manu');
-accounting.printReports();
-accounting.printEmployeeInformation();
+// accounting.printReports();
+// accounting.printEmployeeInformation();
+accounting.describe();
 
 // const accountingCopy = { name:'s', describe: accounting.describe }    // 클래스를 기반으로 하지않고 더미객체로서 생성
 // accountingCopy.describe();  // undefined
