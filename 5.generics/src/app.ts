@@ -15,7 +15,10 @@ function merge<T extends object, U extends object>(objA: T, objB: U) {
     return Object.assign(objA, objB)
 }
 
-const mergedObj = merge<{name: string, hobbies: string[]}, {age:number}>({name: 'Max', hobbies: ['Sports']},{age: 30});
+const mergedObj = merge<{ name: string, hobbies: string[] }, { age: number }>({
+    name: 'Max',
+    hobbies: ['Sports']
+}, {age: 30});
 console.log(mergedObj.age);
 
 interface Lengthy { // length 속성이 없으면 에러
@@ -24,12 +27,18 @@ interface Lengthy { // length 속성이 없으면 에러
 
 function countAndDescribe<T extends Lengthy>(element: T): [T, string] {
     let descriptionText = 'Got no value.';
-    if (element.length === 1){
+    if (element.length === 1) {
         descriptionText = 'Got 1 elements';
-    }else if(element.length > 1){
+    } else if (element.length > 1) {
         descriptionText = 'Got ' + element.length + ' elements.';
     }
     return [element, descriptionText];
 }
 
 console.log(countAndDescribe('Hi there!'));
+
+function extractAndConvert<T extends object, U extends keyof T>(obj: T, key: U) {
+    return 'Value: ' + obj[key];
+}
+
+extractAndConvert({name: 'Max'}, 'name');
