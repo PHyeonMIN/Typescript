@@ -8,14 +8,19 @@ function Logger(logString: string) {
 
 function WithTemplate(template: string, hookId: string){
     console.log('2.TEMPLATE FACTORY');
-    return function(constructor: any){
-        console.log('3.Rendering template');
-        const hookEl = document.getElementById(hookId);
-        const p = new constructor();
-        if(hookEl){
-            hookEl.innerHTML = template;
-            hookEl.querySelector('h1')!.textContent = p.name;
-        }
+    return function<T extends { new (..._: any[]): {name: string} }>(originalConstructor: T){
+        // constructor을 리턴을 하기 위해 - 새오브젝트를 실행하는 새 키워드로 컨스트럭터 함수를 사용해야함
+        return class extends originalConstructor {  // 클래스라는 키워드가 constructor 함수를 만드는 syntactic sugar가 된다.
+            constructor(..._: any[]) {
+                super();
+                console.log('3.Rendering template');
+                const hookEl = document.getElementById(hookId);
+                if(hookEl){
+                    hookEl.innerHTML = template;
+                    hookEl.querySelector('h1')!.textContent = this.name;
+                }
+            };
+        };
     }
 }
 
@@ -86,3 +91,5 @@ class Product {
     }
 }
 
+const p1 = new Product('Book',19);
+const p2 = new Product('Book 2', 29);
